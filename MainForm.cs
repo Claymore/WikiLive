@@ -391,7 +391,7 @@ namespace Claymore.WikiLive
                 string page = selectedItem.SubItems[2].Text;
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.UseShellExecute = true;
-                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + page;
+                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page);
                 process.Start();
             }
         }
@@ -501,7 +501,7 @@ namespace Claymore.WikiLive
                 string page = selectedItem.SubItems[2].Text;
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.UseShellExecute = true;
-                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + page + "&action=history";
+                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page) + "&action=history";
                 process.Start();
             }
         }
@@ -567,7 +567,8 @@ namespace Claymore.WikiLive
             _diffNum = diff;
             _oldId = oldId;
 
-            DateTime timeStamp = DateTime.Parse(_time);
+            DateTime timeStamp = DateTime.Parse(_time, null,
+                System.Globalization.DateTimeStyles.AssumeUniversal);
             string t = timeStamp.ToShortTimeString();
             string strSize = size >= 0 ? "+" + size.ToString() : size.ToString();
 
@@ -633,7 +634,8 @@ namespace Claymore.WikiLive
             _oldId = oldId;
             _page = page;
 
-            DateTime timeStamp = DateTime.Parse(_time);
+            DateTime timeStamp = DateTime.Parse(_time, null,
+                System.Globalization.DateTimeStyles.AssumeUniversal);
             string t = timeStamp.ToShortTimeString();
             string strSize = size >= 0 ? "+" + size.ToString() : size.ToString();
 

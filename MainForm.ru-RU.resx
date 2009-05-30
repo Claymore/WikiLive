@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="columnHeader21.Text" xml:space="preserve">
+    <value>Флаги</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="columnHeader16.Text" xml:space="preserve">
+    <value>Правок</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Участники</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pageContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 70</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="columnHeader14.Text" xml:space="preserve">
+    <value>Флаги</value>
+  </data>
+  <data name="columnHeader13.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="columnHeader6.Text" xml:space="preserve">
+    <value>Участник</value>
+  </data>
+  <data name="columnHeader15.Text" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="editContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 26</value>
+  </data>
+  <data name="openPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="openPageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Смотреть страницу</value>
+  </data>
+  <data name="viewHistoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="viewHistoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Смотреть историю</value>
+  </data>
+  <data name="viewDiffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="viewDiffToolStripMenuItem.Text" xml:space="preserve">
+    <value>Смотреть изменения</value>
+  </data>
+  <data name="openDiffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="openDiffToolStripMenuItem.Text" xml:space="preserve">
+    <value>Смотреть изменения</value>
+  </data>
+  <data name="columnHeader7.Text" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="columnHeader22.Text" xml:space="preserve">
+    <value>Флаги</value>
+  </data>
+  <data name="columnHeader8.Text" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="columnHeader9.Text" xml:space="preserve">
+    <value>Правок</value>
+  </data>
+  <data name="columnHeader10.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="columnHeader11.Text" xml:space="preserve">
+    <value>Участники</value>
+  </data>
+  <data name="columnHeader12.Text" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="columnHeader17.Text" xml:space="preserve">
+    <value>Флаги</value>
+  </data>
+  <data name="columnHeader18.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="columnHeader19.Text" xml:space="preserve">
+    <value>Участник</value>
+  </data>
+  <data name="columnHeader20.Text" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Свежие правки</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Список наблюдения</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Файл</value>
+  </data>
+  <data name="importWatchlistToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="importWatchlistToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Импортировать список наблюдения</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 6</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Выход</value>
+  </data>
+  <data name="connectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 22</value>
+  </data>
+  <data name="connectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Подключиться</value>
+  </data>
+  <data name="disconnectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 22</value>
+  </data>
+  <data name="disconnectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Отключиться</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Вид</value>
+  </data>
+  <data name="refreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Обновить</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 6</value>
+  </data>
+  <data name="botEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="botEditsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Правки ботов</value>
+  </data>
+  <data name="minorEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="minorEditsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Малые правки</value>
+  </data>
+  <data name="newArticlesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="newArticlesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Новые страницы</value>
+  </data>
+  <data name="reviewedEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="reviewedEditsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Неотпатрулированные правки</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Помощь</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;О программе</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        7v/h4eH/4eHh/9/f3//d3d3/2tra/9zc3P23uLj/TVJPmkNHRAAnKyoAMjk2AFxfXAQHBwcQnJ6d8uTk
+        5P7Gxsb+yMjI/cPDw/6ys7L/hIaF+FZaWNpPU1E9cXR0AHF2dJHr7Ov89/f3/Pv7+/3o6Oj9sbOy/6Gk
+        ov7j4+P/5OTk/+Pj4//h4eH/39/f/9zc3P/b29v/1tbW/93d3f+HiYj/V1pYpDs/Pj1PVVQLLzQwAC80
+        MgBaXlyJ29zc/8LCwv/ExMT/wMDA/729vf/BwcH+t7e3+3h7ef9bXl13gYSD1v/////u7u7+7Ozs/+zs
+        7P7z8vL88vLy/ebm5v/l5eX/4uLi/+Dg4P/e3t7/3Nzc/9ra2v/Z2dn/1dXV/9ra2v61trX/j5GQ/2Fm
+        Y8dHS0quQ0hGqm1xb9jR0dH/w8PD/8PDw//AwMD/vr6+/7q6uv+7u7v+xcXF+mdrafB9gH7t/////+zs
+        7P/s7Oz/6urq/+fn5//n5+f/5ubm/+Tk5P/i4uL/4ODg/97e3v/c3Nz/2tra/9fX1//Z2dn/09PT/9XV
+        1f7R0dH/zs7O/8nJyf/Gxsb/yMjI/8XFxf/ExMT/wsLC/7+/v/++vr7/vLy8/7y8vP6ysrL+ZWlmynt9
+        fNb////5////+f////n////8////+ufn5//l5eX/5OTk/+Li4v/f39//3t7e/9vb2//Y2Nj/3Nzc/7u7
+        u/9ubm7/3t7e/9DQ0P+5urn/ycnJ/8bGxv/Gxsb/xcXF/8HBwf++vr7/wMDA/729vf+7u7v/v7+//Y+R
+        kP9GSUZTZGdmOnN3df+Ljo3/eX17/36Bf/WBhYP/9vb1/ubm5v/j4+P/4eHh/9/f3//d3d3/29vb/9zc
+        3P/Dw8P/HBwc/0xMTP/m5ub/mJiY/zs7O//Z2dn/yMjI/8fHx//FxcX/x8fH/83Nzf+/v7//vb29/7q6
+        uv+3uLj+Y2Zl20lMShBdYF4AXGBeAIuTkQBgZGIAYmZjAAAAABWbnZz79PT0/ePj4//h4eH/39/f/9vb
+        2//c3Nz/ysrK/xoaGv+enp7/ZGRk/7Ozs/8HBwf/V1dX/9XV1f/IyMj/x8fH/7q6uvxYW1nhd3p44erq
+        6v/Gxsb9wsHB+oeJiP9LT05sUVZTAF1gXgFbX10HdXp5Bl1iXwdgY2EKFRUVEaGjofby8vL+4uLi/+Dg
+        4P/d3d3/5eXl/9XV1f8fHx//gYGB/+Tk5P9LS0v/Hh4e/6SkpP9sbGz/2NjY/8fHx//Ozs77bXFv/2ls
+        bCAVHhgUcnVz58jJyf+QkZH/TVJQogAAAABUWVcCAAAAAGlpaQBZWFkAVllZAjxAPQBUWFdOzM3M/+7u
+        7vzi4uL/39/f/+Dg4P+0tLT/FhYW/11dXf/i4uL/tLS0/wwMDP+fn5//09PT/1xcXP/b29v/y8rL/qip
+        qf5YXVuVSU1LAAAAAAAXGhkKW15baVNYVk1ob24COj87AVRZVwAAAAAAAAAAAGxubAC0ubYCLjMvIqao
+        pv/5+fn73+Df/+Hh4f/g4OD/3d3d/+Li4v/a2tr/r6+v/8DAwP9FRUX/Y2Nj/9fX1/+ysrL/Pj4+/9vb
+        2//Ly8v+mZua/0FGRGw8QT84TlFPckhNSm2YmZkJAAAAAE9UUgJRV1cAVFlXAAAAAAAAAAAAc3h2AAAA
+        AAKHiIi/////+u/v7/3o6Oj939/f/tvb2//Z2dn/1tbW/9bW1v/b29v/2NjY/+fn5//IyMj/ycnJ/7i4
+        uP+MjIz/xsbG/8jIyP++vr7/iIuK94iKif+hoqH/lpeX/01TUZdSV1YBWl9dAVFXVwAAAAAAAAAAAAAA
+        AABsZmEAOTw8AFldW5SChYPpuLq478/R0Pzg4OD/5eXl/+Xl5f/r6+v/7e3t/9nZ2f/U1NT/0tLS/9HR
+        0f/Pz8//zc3N/83Nzf/IyMj/x8fH/8XFxf/Dw8P/wsLC/76+vv68vLz+SU5MtFdbWABUWlcBAAAAAAAA
+        AAAAAAAAAAAAAG1nYgBITU0BQ0lGAAAAAAESFhMlKS0qRTc9OmY6Pzx+UFRTkHt/fbPi4uL/4+Pj/9TU
+        1P/S0tL/0NDQ/83Nzf/R0dH8ycnJ/MLCwv7AwMD/xcXF/8LCwv++vr7/wMDB/pqcmvpOU1KFV1tZAFhc
+        WgEAAAAAAAAAAAAAAAAAAAAAbWdiAFFXVwBWW1kD////AQAAAAAOEg8AJy0qAB8kIQBJTkwAdHh3q9jY
+        2P/W1tb+1NTU/9LS0v/R0dH/xsbG/6OkpP/Dw8P/4+Pj/+Pj4//FxMT/v8DA/7+/v//BwsH7YWRi+lRY
+        VAtXW1gEVllXAAAAAAAAAAAAAAAAAAAAAAAAAAAAUVdXAAAAAABSV1cAU1ZUAFlcWgBbYF4CXl5aAFpg
+        XXDb3Nz/19fX/NPT0//T09P/0NDQ/8rKyv5vcXDnREhGaEpOTGNNUU+pfYCA2NDS0f/m5ub/1NPT+3l7
+        e/9LTktQWFtZAVVYVQJaWloAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGBk
+        YwRZWlsAYGRjyuvs6//19PT54eHh+9bW1vzX19f8s7S0/UFFQ3AdIiAABgwJACktKwAAAAAGNz07apea
+        mOySlJP/UlZTfAAAAABZXFoBVFZTAFtbWwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAUFVTAFpcXAJITEsKY2VkmXBzcveYmpn2r7Cv+aaop/liZWTgXmFdHE1STwJZXVsBWVxaAgAA
+        AAA1ODgAAAAADQEFBBMoLSoAQUVBAVlcWgBVWFUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAABiaGYAWlxcAGBmYwIuMjAAQ0hFABYfFhItNDExOTw7OiwAAACxs6gAUFhYAICA
+        gAAAAAAAAAAAAENOSABbYV4DWVxbBFlcWgEAAAAAVVVVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQABaXFwAFw4ZAFhbWQRiZmQG////AAAAAAAAAAEAZ2RiA2Zp
+        YwFQWFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABdXV0AAAAAAGVhZgBTWFMAUlhVAFNW
+        VgFPWFgAAAAAAFBYWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////////////////////4D///8AP///AD///wA+f/4A
+        fA+GAHwDAAA8AQAAAAAAAAAAAAAAAYAAAAH8AAAD/AAAw/wAAP/4AAH/8AAAD/AAAA//wAAP/+AAH//g
+        MD//wH5//+B/////////////////////////////
+</value>
+  </data>
+</root>
