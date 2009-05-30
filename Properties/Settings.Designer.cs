@@ -22,5 +22,41 @@ namespace Claymore.WikiLive.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("WikiLive")]
+        public string IrcUser {
+            get {
+                return ((string)(this["IrcUser"]));
+            }
+            set {
+                this["IrcUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("WikiLive IRC bot")]
+        public string IrcDescription {
+            get {
+                return ((string)(this["IrcDescription"]));
+            }
+            set {
+                this["IrcDescription"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#ru.wikipedia")]
+        public string IrcChannel {
+            get {
+                return ((string)(this["IrcChannel"]));
+            }
+            set {
+                this["IrcChannel"] = value;
+            }
+        }
     }
 }

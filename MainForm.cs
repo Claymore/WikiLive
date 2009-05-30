@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Meebey.SmartIrc4net;
+using Claymore.WikiLive.Properties;
 
 namespace Claymore.WikiLive
 {
@@ -19,7 +20,7 @@ namespace Claymore.WikiLive
         private volatile bool _stop;
         private readonly HashSet<string> _watchlist;
         private SQLiteConnection _connection;
-        string baseName = "WikiEdits.db";
+        private string _baseName;
         private AutoResetEvent _autoEvent;
 
         public MainForm()
@@ -33,27 +34,31 @@ namespace Claymore.WikiLive
             _stop = false;
 
             _watchlist = new HashSet<string>();
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            path += @"\WikiLive\";
+            Directory.CreateDirectory(path);
+            _baseName = path + @"WikiEdits.db";
 
-            if (!File.Exists(baseName))
+            if (!File.Exists(_baseName))
             {
-                SQLiteConnection.CreateFile(baseName);
+                SQLiteConnection.CreateFile(_baseName);
             }
 
             SQLiteFactory factory = (SQLiteFactory)DbProviderFactories.GetFactory("System.Data.SQLite");
             _connection = (SQLiteConnection)factory.CreateConnection();
-            _connection.ConnectionString = "Data Source = " + baseName;
+            _connection.ConnectionString = "Data Source = " + _baseName;
             _connection.Open();
 
             using (SQLiteCommand command = new SQLiteCommand(_connection))
             {
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS [edits] (
-                        [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        [id] integer PRIMARY KEY NOT NULL,
                         [timestamp] TEXT NOT NULL,
-                        [author] TEXT NOT NULL,
+                        [user] TEXT NOT NULL,
                         [page] TEXT NOT NULL,
+                        [namespace] INTEGER NOT NULL,
                         [flags] INTEGER NOT NULL,
                         [oldid] INTEGER NOT NULL,
-                        [diff] INTEGER NOT NULL,
                         [size] INTEGER NOT NULL,
                         [summary] TEXT NOT NULL
                     );";
@@ -65,7 +70,8 @@ namespace Claymore.WikiLive
             {
                 command.CommandText = @"CREATE TABLE IF NOT EXISTS [watched_pages] (
                         [id] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                        [page] TEXT NOT NULL
+                        [page] TEXT NOT NULL,
+                        [namespace] INTEGER NOT NULL
                     );";
                 command.CommandType = CommandType.Text;
                 command.ExecuteNonQuery();
@@ -104,6 +110,28 @@ namespace Claymore.WikiLive
                 {
                     mask |= EditFlags.Bot;
                 }
+
+                EditFlags onlyMask = EditFlags.None;
+                if (onlyNewToolStripMenuItem.Checked)
+                {
+                    mask |= EditFlags.New;
+                    onlyMask |= EditFlags.New;
+                }
+                if (onlyBotEditToolStripMenuItem.Checked)
+                {
+                    mask |= EditFlags.Bot;
+                    onlyMask |= EditFlags.Bot;
+                }
+                if (onlyMinToolStripMenuItem.Checked)
+                {
+                    mask |= EditFlags.Minor;
+                    onlyMask |= EditFlags.Minor;
+                }
+                if (onlyUnreviewedEditsToolStripMenuItem.Checked)
+                {
+                    mask |= EditFlags.Unreviewed;
+                    onlyMask |= EditFlags.Unreviewed;
+                }
                 recentChangesListView.BeginUpdate();
                 recentChangesListView.Items.Clear();
                 recentChangesListView.Groups.Clear();
@@ -113,10 +141,13 @@ namespace Claymore.WikiLive
                     SQLiteParameter maskValue = new SQLiteParameter("@mask");
                     maskValue.Value = (int)mask;
                     command.Parameters.Add(maskValue);
-                    command.CommandText = @"SELECT max(timestamp), sum(flags & 4), page, count(timestamp), sum(size), group_concat(author), max(diff), min(oldid)
+                    SQLiteParameter onlyMaskValue = new SQLiteParameter("@onlyMask");
+                    onlyMaskValue.Value = (int)onlyMask;
+                    command.Parameters.Add(onlyMaskValue);
+                    command.CommandText = @"SELECT max(timestamp), sum(flags & 4), page, count(timestamp), sum(size), group_concat(user), max(id), min(oldid), namespace, (namespace || ':' || page) AS name
                                             FROM [edits]
-                                            WHERE (flags | @mask) == @mask
-                                            GROUP BY page
+                                            WHERE (flags & @onlyMask) == @onlyMask AND (flags | @mask) == @mask
+                                            GROUP BY name
                                             ORDER by max(timestamp) DESC";
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
@@ -154,6 +185,8 @@ namespace Claymore.WikiLive
                             long.TryParse(reader[6].ToString(), out diff);
                             long oldId;
                             long.TryParse(reader[7].ToString(), out oldId);
+                            int nm;
+                            int.TryParse(reader[8].ToString(), out nm);
                             PageListViewItem item = new PageListViewItem(t,
                                 WikiEdit.FlagsToString((EditFlags)flags),
                                 size,
@@ -161,7 +194,8 @@ namespace Claymore.WikiLive
                                 changes,
                                 diff,
                                 oldId,
-                                reader[2].ToString());
+                                reader[2].ToString(),
+                                nm);
                             item.Group = group;
                             recentChangesListView.Items.Add(item);
                         }
@@ -175,10 +209,12 @@ namespace Claymore.WikiLive
 
                 using (SQLiteCommand command = new SQLiteCommand(_connection))
                 {
-                    command.CommandText = @"SELECT max(timestamp), sum(flags & 4), edits.page, count(timestamp), sum(size), group_concat(author), max(diff), min(oldid)
+                    command.CommandText = @"SELECT max(timestamp), sum(flags & 4), edits.page, count(timestamp), sum(size), group_concat(user), max(edits.id), min(oldid), edits.namespace, (edits.namespace || ':' || edits.page) AS name
                                             FROM [edits], [watched_pages]
-                                            WHERE edits.page = watched_pages.page
-                                            GROUP BY edits.page
+                                            WHERE edits.page = watched_pages.page AND
+                                                  (edits.namespace=watched_pages.namespace OR
+                                                   edits.namespace=watched_pages.namespace + 1)
+                                            GROUP BY name
                                             ORDER by max(timestamp) DESC";
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
@@ -216,6 +252,8 @@ namespace Claymore.WikiLive
                             long.TryParse(reader[6].ToString(), out diff);
                             long oldId;
                             long.TryParse(reader[7].ToString(), out oldId);
+                            int nm;
+                            int.TryParse(reader[8].ToString(), out nm);
                             PageListViewItem item = new PageListViewItem(t,
                                 WikiEdit.FlagsToString((EditFlags)flags),
                                 size,
@@ -223,7 +261,8 @@ namespace Claymore.WikiLive
                                 changes,
                                 diff,
                                 oldId,
-                                reader[2].ToString());
+                                reader[2].ToString(),
+                                nm);
                             item.Group = group;
                             watchListView.Items.Add(item);
                         }
@@ -241,22 +280,32 @@ namespace Claymore.WikiLive
                 using (SQLiteCommand command = new SQLiteCommand(_connection))
                 {
                     command.CommandText = @"INSERT INTO [edits]
-                        (timestamp, author, page, flags, diff, oldid, size, summary)
-                        VALUES (datetime('now'), @author, @page, @flags, @diff, @oldid, @size, @summary)";
-                    SQLiteParameter author = new SQLiteParameter("@author");
+                        (timestamp, user, page, flags, id, oldid, size, summary, namespace)
+                        VALUES (datetime('now'), @user, @page, @flags, @id, @oldid, @size, @summary, @namespace)";
+                    SQLiteParameter author = new SQLiteParameter("@user");
                     author.Value = edit.Author;
                     SQLiteParameter page = new SQLiteParameter("@page");
                     page.Value = edit.Article;
                     SQLiteParameter flags = new SQLiteParameter("@flags");
                     flags.Value = (int)edit.Flags;
-                    SQLiteParameter diff = new SQLiteParameter("@diff");
-                    diff.Value = edit.Diff;
+                    SQLiteParameter diff = new SQLiteParameter("@id");
+                    diff.Value = edit.Id;
                     SQLiteParameter size = new SQLiteParameter("@size");
                     size.Value = edit.Size;
                     SQLiteParameter summary = new SQLiteParameter("@summary");
                     summary.Value = edit.Summary;
                     SQLiteParameter oldid = new SQLiteParameter("@oldid");
                     oldid.Value = edit.OldId;
+                    SQLiteParameter nm = new SQLiteParameter("@namespace");
+                    nm.Value = 0;
+
+                    var namespaces = WikiEdit.GetNamespaces();
+                    string key = namespaces.Keys.FirstOrDefault(n => edit.Article.StartsWith(n + ":"));
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        page.Value = edit.Article.Replace(key + ":", "");
+                        nm.Value = namespaces[key];
+                    }
                     
                     command.Parameters.Add(author);
                     command.Parameters.Add(page);
@@ -265,6 +314,7 @@ namespace Claymore.WikiLive
                     command.Parameters.Add(size);
                     command.Parameters.Add(summary);
                     command.Parameters.Add(oldid);
+                    command.Parameters.Add(nm);
 
                     command.CommandType = CommandType.Text;
                     command.ExecuteNonQuery();
@@ -283,7 +333,7 @@ namespace Claymore.WikiLive
         void Listen()
         {
             int port = 6667;
-            string channel = "#ru.wikipedia";
+            string channel = Settings.Default.IrcChannel;
             try
             {
                 _irc.Connect("irc.wikimedia.org", port);
@@ -297,7 +347,7 @@ namespace Claymore.WikiLive
             try
             {
                 _autoEvent.Reset();
-                _irc.Login("ClaymoreBot", "WikiLive IRC Bot");
+                _irc.Login(Settings.Default.IrcUser, Settings.Default.IrcDescription);
                 _irc.RfcJoin(channel);
                 _stop = false;
                 while (!_stop)
@@ -323,7 +373,7 @@ namespace Claymore.WikiLive
 
         private void recentChangesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = recentChangesListView.SelectedItems.Count > 0 ? recentChangesListView.SelectedItems[0] : null;
+            PageListViewItem selectedItem = recentChangesListView.SelectedItems.Count > 0 ? (PageListViewItem)recentChangesListView.SelectedItems[0] : null;
             if (selectedItem != null)
             {
                 string page = selectedItem.SubItems[2].Text;
@@ -334,11 +384,14 @@ namespace Claymore.WikiLive
                 using (SQLiteCommand command = new SQLiteCommand(_connection))
                 {
                     SQLiteParameter pageValue = new SQLiteParameter("@page");
-                    pageValue.Value = page;
+                    pageValue.Value = selectedItem.Page;
                     command.Parameters.Add(pageValue);
-                    command.CommandText = @"SELECT timestamp, flags, size, author, summary, diff, oldid
+                    SQLiteParameter namespaceValue = new SQLiteParameter("@namespace");
+                    namespaceValue.Value = selectedItem.Namespace;
+                    command.Parameters.Add(namespaceValue);
+                    command.CommandText = @"SELECT timestamp, flags, size, user, summary, id, oldid
                                             FROM [edits]
-                                            WHERE page=@page
+                                            WHERE page=@page AND namespace=@namespace
                                             ORDER by timestamp DESC";
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
@@ -352,7 +405,7 @@ namespace Claymore.WikiLive
                             long.TryParse(reader[5].ToString(), out diff);
                             long oldid;
                             long.TryParse(reader[6].ToString(), out oldid);
-
+                            
                             EditListViewItem item = new EditListViewItem(reader[0].ToString(),
                                 WikiEdit.FlagsToString((EditFlags)flags),
                                 size,
@@ -431,13 +484,26 @@ namespace Claymore.WikiLive
             using (SQLiteTransaction transaction = _connection.BeginTransaction())
             using (SQLiteCommand command = new SQLiteCommand(_connection))
             {
-                command.CommandText = @"INSERT INTO [watched_pages] (page) VALUES (@page)";
+                command.CommandText = @"INSERT INTO [watched_pages] (page, namespace) VALUES (@page, @namespace)";
                 SQLiteParameter page = new SQLiteParameter("@page");
                 command.Parameters.Add(page);
+                SQLiteParameter nm = new SQLiteParameter("@namespace");
+                command.Parameters.Add(nm);
                 string line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    page.Value = line;
+                    nm.Value = 0;
+                    var namespaces = WikiEdit.GetNamespaces();
+                    string key = namespaces.Keys.FirstOrDefault(n => line.StartsWith(n + ":"));
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        page.Value = line.Replace(key + ":", "");
+                        nm.Value = namespaces[key];
+                    }
+                    else
+                    {
+                        page.Value = line;
+                    }
                     command.ExecuteNonQuery();
                 }
                 transaction.Commit();
@@ -446,7 +512,7 @@ namespace Claymore.WikiLive
 
         private void watchListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = watchListView.SelectedItems.Count > 0 ? watchListView.SelectedItems[0] : null;
+            PageListViewItem selectedItem = watchListView.SelectedItems.Count > 0 ? (PageListViewItem)watchListView.SelectedItems[0] : null;
             if (selectedItem != null)
             {
                 string page = selectedItem.SubItems[2].Text;
@@ -456,11 +522,14 @@ namespace Claymore.WikiLive
                 using (SQLiteCommand command = new SQLiteCommand(_connection))
                 {
                     SQLiteParameter pageValue = new SQLiteParameter("@page");
-                    pageValue.Value = page;
+                    pageValue.Value = selectedItem.Page;
                     command.Parameters.Add(pageValue);
-                    command.CommandText = @"SELECT timestamp, flags, size, author, summary, diff, oldid
+                    SQLiteParameter namespaceValue = new SQLiteParameter("@namespace");
+                    namespaceValue.Value = selectedItem.Namespace;
+                    command.Parameters.Add(namespaceValue);
+                    command.CommandText = @"SELECT timestamp, flags, size, user, summary, id, oldid
                                             FROM [edits]
-                                            WHERE page=@page
+                                            WHERE page=@page AND namespace=@namespace
                                             ORDER by timestamp DESC";
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
@@ -527,6 +596,92 @@ namespace Claymore.WikiLive
         {
             AboutForm dlg = new AboutForm();
             dlg.ShowDialog();
+        }
+
+        private void onlyNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newArticlesToolStripMenuItem.Enabled = !newArticlesToolStripMenuItem.Enabled;
+            UpdateViews();
+        }
+
+        private void onlyBotEditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            botEditsToolStripMenuItem.Enabled = !botEditsToolStripMenuItem.Enabled;
+            UpdateViews();
+        }
+
+        private void onlyMinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            minorEditsToolStripMenuItem.Enabled = !minorEditsToolStripMenuItem.Enabled;
+            UpdateViews();
+        }
+
+        private void onlyUnreviewedEditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            reviewedEditsToolStripMenuItem.Enabled = !reviewedEditsToolStripMenuItem.Enabled;
+            UpdateViews();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (watchListEditsView.SelectedItems.Count != 0)
+            {
+                EditListViewItem selectedItem = watchListEditsView.SelectedItems[0] as EditListViewItem;
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.FileName = selectedItem.Diff;
+                process.Start();
+            }
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsForm dlg = new OptionsForm();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.IrcUser = dlg.User;
+                Settings.Default.IrcDescription = dlg.Description;
+                Settings.Default.IrcChannel = dlg.Channel;
+                Settings.Default.Save();
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (watchListView.SelectedItems.Count != 0)
+            {
+                ListViewItem selectedItem = watchListView.SelectedItems[0];
+                string page = selectedItem.SubItems[2].Text;
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page);
+                process.Start();
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (watchListView.SelectedItems.Count != 0)
+            {
+                ListViewItem selectedItem = watchListView.SelectedItems[0];
+                string page = selectedItem.SubItems[2].Text;
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page) + "&action=history";
+                process.Start();
+            }
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (watchListView.SelectedItems.Count != 0)
+            {
+                PageListViewItem selectedItem = watchListView.SelectedItems[0] as PageListViewItem;
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.FileName = selectedItem.Diff;
+                process.Start();
+            }
         }
     }
 
@@ -604,6 +759,7 @@ namespace Claymore.WikiLive
         long _oldId;
         int _changes;
         string _page;
+        int _namespace;
 
         public string Diff
         {
@@ -615,6 +771,16 @@ namespace Claymore.WikiLive
             }
         }
 
+        public string Page
+        {
+            get { return _page; }
+        }
+
+        public int Namespace
+        {
+            get { return _namespace; }
+        }
+
         public PageListViewItem(string time,
             string flags,
             int size,
@@ -622,7 +788,8 @@ namespace Claymore.WikiLive
             int changes,
             long diff,
             long oldId,
-            string page)
+            string page,
+            int nm)
             : base("")
         {
             _time = time;
@@ -633,6 +800,7 @@ namespace Claymore.WikiLive
             _diffNum = diff;
             _oldId = oldId;
             _page = page;
+            _namespace = nm;
 
             DateTime timeStamp = DateTime.Parse(_time, null,
                 System.Globalization.DateTimeStyles.AssumeUniversal);
@@ -641,7 +809,14 @@ namespace Claymore.WikiLive
 
             SubItems[0].Text = t;
             SubItems.Add(_flags);
-            SubItems.Add(_page);
+            if (_namespace != 0)
+            {
+                SubItems.Add(string.Format("{0}:{1}", WikiEdit.NumberToNamespace(_namespace), _page));
+            }
+            else
+            {
+                SubItems.Add(_page);
+            }
             SubItems.Add(_changes.ToString());
             SubItems.Add(strSize);
             SubItems.Add(_authors);
@@ -666,7 +841,37 @@ namespace Claymore.WikiLive
     internal class WikiEdit
     {
         private static Regex _messageRE = new Regex(@"\u000314\[\[\u000307(.+?)\u000314\]\]\u00034 (.*?)\u000310 \u000302(.+?)\u0003 \u00035\*\u0003 \u000303(.+?)\u0003 \u00035\*\u0003 \(([+-]?\d+?)\) \u000310(.*)\u0003");
-        static private Regex diffRE = new Regex(@"http://ru\.wikipedia\.org/w/index\.php\?(diff=(\d+)&)?oldid=(\d+)");
+        private static Regex _diffRE = new Regex(@"http://ru\.wikipedia\.org/w/index\.php\?(diff=(\d+)&)?oldid=(\d+)");
+        private static Dictionary<string, int> _namespaces;
+        private static Dictionary<int, string> _reversedNamespaces;
+
+        static WikiEdit()
+        {
+            _namespaces = new Dictionary<string, int>();
+            _namespaces.Add("Обсуждение", 1);
+            _namespaces.Add("Участник", 2);
+            _namespaces.Add("Обсуждение участника", 3);
+            _namespaces.Add("Википедия", 4);
+            _namespaces.Add("Обсуждение Википедии", 5);
+            _namespaces.Add("Файл", 6);
+            _namespaces.Add("Обсуждение файла", 7);
+            _namespaces.Add("MediaWiki", 8);
+            _namespaces.Add("Обсуждение MediaWiki", 9);
+            _namespaces.Add("Шаблон", 10);
+            _namespaces.Add("Обсуждение шаблона", 11);
+            _namespaces.Add("Справка", 12);
+            _namespaces.Add("Обсуждение справки", 13);
+            _namespaces.Add("Категория", 14);
+            _namespaces.Add("Обсуждение категории", 15);
+            _namespaces.Add("Портал", 100);
+            _namespaces.Add("Обсуждение портала", 101);
+
+            _reversedNamespaces = new Dictionary<int, string>();
+            foreach (KeyValuePair<string, int> pair in _namespaces)
+            {
+                _reversedNamespaces.Add(pair.Value, pair.Key);
+            }
+        }
 
         private string _article;
         private string _author;
@@ -709,9 +914,9 @@ namespace Claymore.WikiLive
             get { return _diffLink; }
         }
 
-        public long Diff
+        public long Id
         {
-            get { return _diff; }
+            get { return _diff == 0 ? _oldId : _diff; }
         }
 
         public long OldId
@@ -761,7 +966,7 @@ namespace Claymore.WikiLive
                 edit._flags = EditFlags.None;
                 edit._flagsString = flags;
 
-                m = diffRE.Match(m.Groups[3].Value);
+                m = _diffRE.Match(m.Groups[3].Value);
                 if (m.Success)
                 {
                     long.TryParse(m.Groups[3].Value, out edit._oldId);
@@ -796,6 +1001,21 @@ namespace Claymore.WikiLive
             {
                 return null;
             }
+        }
+
+        public static string NumberToNamespace(int nameSpace)
+        {
+            return _reversedNamespaces[nameSpace];
+        }
+
+        public static int NamespaceToNumber(string nameSpace)
+        {
+            return _namespaces[nameSpace];
+        }
+
+        public static IDictionary<string, int> GetNamespaces()
+        {
+            return _namespaces;
         }
     }
 

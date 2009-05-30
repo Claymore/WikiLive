@@ -1,4 +1,4 @@
-WikiLive is a special IRC client that can serve as a real time Wikipedia watchlist.
+WikiLive is a special IRC client that aims to be a real time Wikipedia watch list.
 
 WikiLive is written by Alexey Bobyakov and it is licensed under the terms of BSD license.
 
