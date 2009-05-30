@@ -1,0 +1,15 @@
+h2. About
+
+*WikiLive* is a special IRC client that aims to be a real time Wikipedia watch list. It connects to a Wikipedia channel on irc.wikimedia.org and presents recent changes in a nice form.
+
+h2. Screenshots
+
+!http://lh6.ggpht.com/_IpBOXbeuGR0/SiGH8qCW91I/AAAAAAAAC_o/gxC3ApVmLYc/s144/WikiLive-0.2.1.png!:http://picasaweb.google.ru/lh/photo/G0W57ucLKmdUe4vwcDPJXQ?feat=directlink
+
+h2. Dependencies
+
+You will need "Microsoft .NET Framework 3.5":http://www.microsoft.com/downloads/details.aspx?FamilyId=333325FD-AE52-4E35-B531-508D977D32A6&displaylang=ento to compile and use the program on Windows. You will also need "SmartIrc4net":http://smartirc4net.meebey.net/jaws/ and "SQLite":http://www.sqlite.org/index.html libraries.
+
+h2. License
+
+WikiLive is licensed under the terms of the BSD License, see the included License.txt file. The program links against "SmartIrc4net":http://smartirc4net.meebey.net/jaws/ library written by Mirco Bauer and "SQLite":http://www.sqlite.org/. SmartIrc4net is licensed under the terms of the LGPL. SQLite has been dedicated to the "public domain":http://www.sqlite.org/copyright.html by the authors. Icons are based on  "Wiki letter w.svg":http://commons.wikimedia.org/wiki/File:Wiki_letter_w.svg created by "Jarkko Piiroinen":http://commons.wikimedia.org/wiki/User:Jarkko_Piiroinen. Wiki letter w.svg is licensed under the terms of the GFDL.
