@@ -11,6 +11,8 @@ using System.Threading;
 using System.Windows.Forms;
 using Meebey.SmartIrc4net;
 using Claymore.WikiLive.Properties;
+using Claymore.SharpMediaWiki;
+using System.Xml;
 
 namespace Claymore.WikiLive
 {
@@ -18,7 +20,6 @@ namespace Claymore.WikiLive
     {
         private static IrcClient _irc = new IrcClient();
         private volatile bool _stop;
-        private readonly HashSet<string> _watchlist;
         private SQLiteConnection _connection;
         private string _baseName;
         private AutoResetEvent _autoEvent;
@@ -30,18 +31,30 @@ namespace Claymore.WikiLive
             _irc.Encoding = System.Text.Encoding.UTF8;
             _irc.SendDelay = 200;
             _irc.OnChannelMessage += new IrcEventHandler(OnChannelMessage);
-            
+
+            _autoEvent = new AutoResetEvent(true);
             _stop = false;
+            timer.Interval = 100 * 300;
 
-            _watchlist = new HashSet<string>();
+            SwitchToLanguage(Settings.Default.Language);
+            UpdateViews();
+        }
+
+        private void SwitchToLanguage(string language)
+        {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            path += @"\WikiLive\";
+            path += @"\WikiLive\" + language;
             Directory.CreateDirectory(path);
-            _baseName = path + @"WikiEdits.db";
 
+            _baseName = path + @"\WikiLive.db";
             if (!File.Exists(_baseName))
             {
                 SQLiteConnection.CreateFile(_baseName);
+            }
+
+            if (_connection != null && _connection.State != ConnectionState.Closed)
+            {
+                _connection.Close();
             }
 
             SQLiteFactory factory = (SQLiteFactory)DbProviderFactories.GetFactory("System.Data.SQLite");
@@ -77,10 +90,28 @@ namespace Claymore.WikiLive
                 command.ExecuteNonQuery();
             }
 
-            UpdateViews();
-            timer.Interval = 100 * 300;
+            if (!File.Exists(path + @"\namespaces.dat"))
+            {
+                Wiki wiki = new Wiki("http://" + language + ".wikipedia.org");
+                ParameterCollection parameters = new ParameterCollection();
+                parameters.Add("meta", "siteinfo");
+                parameters.Add("siprop", "namespaces");
+                XmlDocument xml = wiki.Enumerate(parameters, true);
+                XmlNodeList nodes = xml.SelectNodes("//ns[@id > 0]");
+                Serializer serializer = new Serializer();
+                serializer.Put(nodes.Count);
+                foreach (XmlNode node in nodes)
+                {
+                    serializer.Put(node.Attributes["id"].Value);
+                    serializer.Put(node.FirstChild.Value);
+                }
 
-            _autoEvent = new AutoResetEvent(true);
+                using (FileStream fs = new FileStream(path + @"\namespaces.dat", FileMode.CreateNew))
+                using (BinaryWriter streamWriter = new BinaryWriter(fs))
+                {
+                    streamWriter.Write(serializer.ToArray());
+                }
+            }
         }
 
         delegate void StringParameterDelegate();
@@ -144,9 +175,19 @@ namespace Claymore.WikiLive
                     SQLiteParameter onlyMaskValue = new SQLiteParameter("@onlyMask");
                     onlyMaskValue.Value = (int)onlyMask;
                     command.Parameters.Add(onlyMaskValue);
-                    command.CommandText = @"SELECT max(timestamp), sum(flags & 4), page, count(timestamp), sum(size), group_concat(user), max(id), min(oldid), namespace, (namespace || ':' || page) AS name
+                    command.CommandText = @"SELECT max(timestamp),
+                                                   sum(flags & 4),
+                                                   page,
+                                                   count(timestamp),
+                                                   sum(size),
+                                                   group_concat(user),
+                                                   max(id),
+                                                   min(oldid),
+                                                   namespace,
+                                                   (namespace || ':' || page) AS name
                                             FROM [edits]
-                                            WHERE (flags & @onlyMask) == @onlyMask AND (flags | @mask) == @mask
+                                            WHERE (flags & @onlyMask) == @onlyMask AND
+                                                  (flags | @mask) == @mask
                                             GROUP BY name
                                             ORDER by max(timestamp) DESC";
                     using (SQLiteDataReader reader = command.ExecuteReader())
@@ -324,6 +365,11 @@ namespace Claymore.WikiLive
 
         private void connectButton_Click(object sender, EventArgs e)
         {
+            if (!_connection.ConnectionString.Contains("\\" + Settings.Default.Language + "\\"))
+            {
+                SwitchToLanguage(Settings.Default.Language);
+                UpdateViews();
+            }
             timer.Start();
             new Thread(new ThreadStart(Listen)).Start();
             disconnectToolStripMenuItem.Enabled = true;
@@ -333,7 +379,7 @@ namespace Claymore.WikiLive
         void Listen()
         {
             int port = 6667;
-            string channel = Settings.Default.IrcChannel;
+            string channel = "#" + Settings.Default.Language + ".wikipedia";
             try
             {
                 _irc.Connect("irc.wikimedia.org", port);
@@ -369,6 +415,7 @@ namespace Claymore.WikiLive
             timer.Stop();
             connectToolStripMenuItem.Enabled = true;
             disconnectToolStripMenuItem.Enabled = false;
+            _autoEvent.Set();
         }
 
         private void recentChangesListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -444,9 +491,20 @@ namespace Claymore.WikiLive
                 string page = selectedItem.SubItems[2].Text;
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.UseShellExecute = true;
-                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page);
+                process.StartInfo.FileName = GetUri(Settings.Default.Language,
+                    Settings.Default.HttpsLinks,
+                    "title=" + Uri.EscapeDataString(page));
                 process.Start();
             }
+        }
+
+        public static string GetUri(string language, bool https, string parameters)
+        {
+            if (https)
+            {
+                return string.Format("https://secure.wikimedia.org/wikipedia/{0}/w/index.php?{1}", language, parameters);
+            }
+            return string.Format("http://{0}.wikipedia.org/w/index.php?{1}", language, parameters);
         }
 
         private void openDiffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -570,7 +628,9 @@ namespace Claymore.WikiLive
                 string page = selectedItem.SubItems[2].Text;
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.UseShellExecute = true;
-                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page) + "&action=history";
+                process.StartInfo.FileName = GetUri(Settings.Default.Language,
+                    Settings.Default.HttpsLinks,
+                    "title=" + Uri.EscapeDataString(page) + "&action=history");
                 process.Start();
             }
         }
@@ -641,8 +701,17 @@ namespace Claymore.WikiLive
             {
                 Settings.Default.IrcUser = dlg.User;
                 Settings.Default.IrcDescription = dlg.Description;
-                Settings.Default.IrcChannel = dlg.Channel;
+                Settings.Default.Language = dlg.Language;
+                Settings.Default.HttpsLinks = dlg.HttpsLinks;
                 Settings.Default.Save();
+                
+                disconnectButton_Click(this, EventArgs.Empty);
+                if (!_connection.ConnectionString.Contains("\\" + Settings.Default.Language + "\\"))
+                {
+                    SwitchToLanguage(Settings.Default.Language);
+                    WikiEdit.SwitchToLanguage(Settings.Default.Language);
+                    UpdateViews();
+                }
             }
         }
 
@@ -654,7 +723,9 @@ namespace Claymore.WikiLive
                 string page = selectedItem.SubItems[2].Text;
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.UseShellExecute = true;
-                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page);
+                process.StartInfo.FileName = GetUri(Settings.Default.Language,
+                    Settings.Default.HttpsLinks,
+                    "title=" + Uri.EscapeDataString(page));
                 process.Start();
             }
         }
@@ -667,7 +738,9 @@ namespace Claymore.WikiLive
                 string page = selectedItem.SubItems[2].Text;
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo.UseShellExecute = true;
-                process.StartInfo.FileName = "http://ru.wikipedia.org/w/index.php?title=" + Uri.EscapeDataString(page) + "&action=history";
+                process.StartInfo.FileName = GetUri(Settings.Default.Language,
+                    Settings.Default.HttpsLinks,
+                    "title=" + Uri.EscapeDataString(page) + "&action=history");
                 process.Start();
             }
         }
@@ -765,9 +838,11 @@ namespace Claymore.WikiLive
         {
             get
             {
-                return _diffNum != 0
-                    ? string.Format("http://ru.wikipedia.org/w/index.php?diff={0}&oldid={1}", _diffNum, _oldId)
-                    : string.Format("http://ru.wikipedia.org/w/index.php?&oldid={0}", _oldId);
+                return MainForm.GetUri(Settings.Default.Language,
+                    Settings.Default.HttpsLinks,
+                    _diffNum != 0
+                        ? string.Format("diff={0}&oldid={1}", _diffNum, _oldId)
+                        : string.Format("&oldid={0}", _oldId));
             }
         }
 
@@ -841,32 +916,33 @@ namespace Claymore.WikiLive
     internal class WikiEdit
     {
         private static Regex _messageRE = new Regex(@"\u000314\[\[\u000307(.+?)\u000314\]\]\u00034 (.*?)\u000310 \u000302(.+?)\u0003 \u00035\*\u0003 \u000303(.+?)\u0003 \u00035\*\u0003 \(([+-]?\d+?)\) \u000310(.*)\u0003");
-        private static Regex _diffRE = new Regex(@"http://ru\.wikipedia\.org/w/index\.php\?(diff=(\d+)&)?oldid=(\d+)");
+        private static Regex _diffRE = new Regex(@"http://(.+?)\.wikipedia\.org/w/index\.php\?(diff=(\d+)&)?oldid=(\d+)");
         private static Dictionary<string, int> _namespaces;
         private static Dictionary<int, string> _reversedNamespaces;
 
         static WikiEdit()
         {
             _namespaces = new Dictionary<string, int>();
-            _namespaces.Add("Обсуждение", 1);
-            _namespaces.Add("Участник", 2);
-            _namespaces.Add("Обсуждение участника", 3);
-            _namespaces.Add("Википедия", 4);
-            _namespaces.Add("Обсуждение Википедии", 5);
-            _namespaces.Add("Файл", 6);
-            _namespaces.Add("Обсуждение файла", 7);
-            _namespaces.Add("MediaWiki", 8);
-            _namespaces.Add("Обсуждение MediaWiki", 9);
-            _namespaces.Add("Шаблон", 10);
-            _namespaces.Add("Обсуждение шаблона", 11);
-            _namespaces.Add("Справка", 12);
-            _namespaces.Add("Обсуждение справки", 13);
-            _namespaces.Add("Категория", 14);
-            _namespaces.Add("Обсуждение категории", 15);
-            _namespaces.Add("Портал", 100);
-            _namespaces.Add("Обсуждение портала", 101);
-
             _reversedNamespaces = new Dictionary<int, string>();
+            SwitchToLanguage(Settings.Default.Language);
+        }
+
+        public static void SwitchToLanguage(string language)
+        {
+            _namespaces.Clear();
+            _reversedNamespaces.Clear();
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            path += @"\WikiLive\" + language;
+            Deserializer deserializer = new Deserializer(File.ReadAllBytes(path + @"\namespaces.dat"));
+            int count = deserializer.GetInt();
+            for (int i = 0; i < count; ++i)
+            {
+                int number;
+                int.TryParse(deserializer.GetString(), out number);
+                _namespaces.Add(deserializer.GetString(), number);
+            }
+
             foreach (KeyValuePair<string, int> pair in _namespaces)
             {
                 _reversedNamespaces.Add(pair.Value, pair.Key);
@@ -969,10 +1045,10 @@ namespace Claymore.WikiLive
                 m = _diffRE.Match(m.Groups[3].Value);
                 if (m.Success)
                 {
-                    long.TryParse(m.Groups[3].Value, out edit._oldId);
-                    if (!string.IsNullOrEmpty(m.Groups[2].Value))
+                    long.TryParse(m.Groups[4].Value, out edit._oldId);
+                    if (!string.IsNullOrEmpty(m.Groups[3].Value))
                     {
-                        long.TryParse(m.Groups[2].Value, out edit._diff);
+                        long.TryParse(m.Groups[3].Value, out edit._diff);
                     }
                 }
                 for (int i = 0; i < flags.Length; ++i)

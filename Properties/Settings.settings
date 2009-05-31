@@ -8,8 +8,11 @@
     <Setting Name="IrcDescription" Type="System.String" Scope="User">
       <Value Profile="(Default)">WikiLive IRC bot</Value>
     </Setting>
-    <Setting Name="IrcChannel" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#ru.wikipedia</Value>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ru</Value>
+    </Setting>
+    <Setting Name="HttpsLinks" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

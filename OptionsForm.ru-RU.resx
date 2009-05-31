@@ -117,261 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Время</value>
-  </data>
-  <data name="columnHeader21.Text" xml:space="preserve">
-    <value>Флаги</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Страница</value>
-  </data>
-  <data name="columnHeader16.Text" xml:space="preserve">
-    <value>Правок</value>
-  </data>
-  <data name="columnHeader5.Text" xml:space="preserve">
-    <value>Размер</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Участники</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pageContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 70</value>
+  <data name="acceptButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 109</value>
   </data>
-  <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Время</value>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 109</value>
   </data>
-  <data name="columnHeader14.Text" xml:space="preserve">
-    <value>Флаги</value>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>О&amp;тмена</value>
   </data>
-  <data name="columnHeader13.Text" xml:space="preserve">
-    <value>Размер</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 13</value>
   </data>
-  <data name="columnHeader6.Text" xml:space="preserve">
-    <value>Участник</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Имя в IRC:</value>
   </data>
-  <data name="columnHeader15.Text" xml:space="preserve">
-    <value>Комментарий</value>
+  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 20</value>
   </data>
-  <data name="editContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 26</value>
+  <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 20</value>
   </data>
-  <data name="openPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
   </data>
-  <data name="openPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Смотреть страницу</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Описание:</value>
   </data>
-  <data name="viewHistoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
   </data>
-  <data name="viewHistoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Смотреть историю</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Язык:</value>
   </data>
-  <data name="viewDiffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 21</value>
   </data>
-  <data name="viewDiffToolStripMenuItem.Text" xml:space="preserve">
-    <value>Смотреть изменения</value>
+  <data name="httpsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 17</value>
   </data>
-  <data name="openDiffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+  <data name="httpsCheckBox.Text" xml:space="preserve">
+    <value>Использовать HTTPS-ссылки.</value>
   </data>
-  <data name="openDiffToolStripMenuItem.Text" xml:space="preserve">
-    <value>Смотреть изменения</value>
-  </data>
-  <data name="columnHeader7.Text" xml:space="preserve">
-    <value>Время</value>
-  </data>
-  <data name="columnHeader22.Text" xml:space="preserve">
-    <value>Флаги</value>
-  </data>
-  <data name="columnHeader8.Text" xml:space="preserve">
-    <value>Страница</value>
-  </data>
-  <data name="columnHeader9.Text" xml:space="preserve">
-    <value>Правок</value>
-  </data>
-  <data name="columnHeader10.Text" xml:space="preserve">
-    <value>Размер</value>
-  </data>
-  <data name="columnHeader11.Text" xml:space="preserve">
-    <value>Участники</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Смотреть страницу</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Смотреть историю</value>
-  </data>
-  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>Смотреть изменения</value>
-  </data>
-  <data name="watchListContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 70</value>
-  </data>
-  <data name="columnHeader12.Text" xml:space="preserve">
-    <value>Время</value>
-  </data>
-  <data name="columnHeader17.Text" xml:space="preserve">
-    <value>Флаги</value>
-  </data>
-  <data name="columnHeader18.Text" xml:space="preserve">
-    <value>Размер</value>
-  </data>
-  <data name="columnHeader19.Text" xml:space="preserve">
-    <value>Участник</value>
-  </data>
-  <data name="columnHeader20.Text" xml:space="preserve">
-    <value>Комментарий</value>
-  </data>
-  <data name="contextMenuStrip2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 26</value>
-  </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
-  </data>
-  <data name="toolStripMenuItem4.Text" xml:space="preserve">
-    <value>Смотреть изменения</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Свежие правки</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Список наблюдения</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Файл</value>
-  </data>
-  <data name="importWatchlistToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 22</value>
-  </data>
-  <data name="importWatchlistToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Импортировать список наблюдения</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 6</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 22</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Выход</value>
-  </data>
-  <data name="connectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
-  </data>
-  <data name="connectToolStripMenuItem.Text" xml:space="preserve">
-    <value>Подключиться</value>
-  </data>
-  <data name="disconnectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
-  </data>
-  <data name="disconnectToolStripMenuItem.Text" xml:space="preserve">
-    <value>Отключиться</value>
-  </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Вид</value>
-  </data>
-  <data name="refreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="refreshToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Обновить</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 6</value>
-  </data>
-  <data name="botEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="botEditsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Правки ботов</value>
-  </data>
-  <data name="minorEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="minorEditsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Малые правки</value>
-  </data>
-  <data name="newArticlesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="newArticlesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Новые страницы</value>
-  </data>
-  <data name="reviewedEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="reviewedEditsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Неотпатрулированные правки</value>
-  </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 6</value>
-  </data>
-  <data name="onlyBotEditToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="onlyBotEditToolStripMenuItem.Text" xml:space="preserve">
-    <value>Только правки ботов</value>
-  </data>
-  <data name="onlyMinToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="onlyMinToolStripMenuItem.Text" xml:space="preserve">
-    <value>Только малые правки</value>
-  </data>
-  <data name="onlyNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="onlyNewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Только новые страницы</value>
-  </data>
-  <data name="onlyUnreviewedEditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 22</value>
-  </data>
-  <data name="onlyUnreviewedEditsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Только неотпатрулированные правки</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Сервис</value>
-  </data>
-  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Настройки</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Помощь</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;О программе</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>329, 144</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -467,5 +257,11 @@
         fA+GAHwDAAA8AQAAAAAAAAAAAAAAAYAAAAH8AAAD/AAAw/wAAP/4AAH/8AAAD/AAAA//wAAP/+AAH//g
         MD//wH5//+B/////////////////////////////
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>345, 182</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Настройки</value>
   </data>
 </root>

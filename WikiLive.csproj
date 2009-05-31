@@ -58,7 +58,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
+    <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\System.Data.SQLite.DLL</HintPath>
     </Reference>
@@ -110,6 +110,9 @@
     <EmbeddedResource Include="OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.ru-RU.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -136,6 +139,12 @@
     <Content Include="ReadMe.txt" />
     <Content Include="Resources\WikiLive.ico" />
     <None Include="Resources\Wiki_letter_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharpMediaWiki\SharpMediaWiki.csproj">
+      <Project>{1266F599-F539-4645-B623-CFB2424A62E0}</Project>
+      <Name>SharpMediaWiki</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

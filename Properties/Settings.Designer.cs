@@ -49,13 +49,25 @@ namespace Claymore.WikiLive.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#ru.wikipedia")]
-        public string IrcChannel {
+        [global::System.Configuration.DefaultSettingValueAttribute("ru")]
+        public string Language {
             get {
-                return ((string)(this["IrcChannel"]));
+                return ((string)(this["Language"]));
             }
             set {
-                this["IrcChannel"] = value;
+                this["Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HttpsLinks {
+            get {
+                return ((bool)(this["HttpsLinks"]));
+            }
+            set {
+                this["HttpsLinks"] = value;
             }
         }
     }

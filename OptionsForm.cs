@@ -18,7 +18,8 @@ namespace Claymore.WikiLive
 
             nameTextBox.Text = Settings.Default.IrcUser;
             descriptionTextBox.Text = Settings.Default.IrcDescription;
-            channelTextBox.Text = Settings.Default.IrcChannel;
+            languageComboBox.Text = Settings.Default.Language;
+            httpsCheckBox.Checked = Settings.Default.HttpsLinks;
         }
 
         public string User
@@ -31,9 +32,14 @@ namespace Claymore.WikiLive
             get { return descriptionTextBox.Text; }
         }
 
-        public string Channel
+        public string Language
         {
-            get { return channelTextBox.Text; }
+            get { return languageComboBox.Text; }
+        }
+
+        public bool HttpsLinks
+        {
+            get { return httpsCheckBox.Checked; }
         }
     }
 }

@@ -29,114 +29,199 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.acceptButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.channelTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.languageComboBox = new System.Windows.Forms.ComboBox();
+            this.httpsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // acceptButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(200, 97);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "&OK";
-            this.button1.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.acceptButton, "acceptButton");
+            this.acceptButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.acceptButton.Name = "acceptButton";
+            this.acceptButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // cancelButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(281, 97);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "&Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.cancelButton, "cancelButton");
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "IRC name:";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameTextBox.Location = new System.Drawing.Point(87, 12);
+            resources.ApplyResources(this.nameTextBox, "nameTextBox");
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(269, 20);
-            this.nameTextBox.TabIndex = 0;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(87, 38);
+            resources.ApplyResources(this.descriptionTextBox, "descriptionTextBox");
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(269, 20);
-            this.descriptionTextBox.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Description:";
-            // 
-            // channelTextBox
-            // 
-            this.channelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.channelTextBox.Location = new System.Drawing.Point(87, 64);
-            this.channelTextBox.Name = "channelTextBox";
-            this.channelTextBox.Size = new System.Drawing.Size(269, 20);
-            this.channelTextBox.TabIndex = 2;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 67);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "IRC channel:";
+            // 
+            // languageComboBox
+            // 
+            resources.ApplyResources(this.languageComboBox, "languageComboBox");
+            this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.languageComboBox.FormattingEnabled = true;
+            this.languageComboBox.Items.AddRange(new object[] {
+            resources.GetString("languageComboBox.Items"),
+            resources.GetString("languageComboBox.Items1"),
+            resources.GetString("languageComboBox.Items2"),
+            resources.GetString("languageComboBox.Items3"),
+            resources.GetString("languageComboBox.Items4"),
+            resources.GetString("languageComboBox.Items5"),
+            resources.GetString("languageComboBox.Items6"),
+            resources.GetString("languageComboBox.Items7"),
+            resources.GetString("languageComboBox.Items8"),
+            resources.GetString("languageComboBox.Items9"),
+            resources.GetString("languageComboBox.Items10"),
+            resources.GetString("languageComboBox.Items11"),
+            resources.GetString("languageComboBox.Items12"),
+            resources.GetString("languageComboBox.Items13"),
+            resources.GetString("languageComboBox.Items14"),
+            resources.GetString("languageComboBox.Items15"),
+            resources.GetString("languageComboBox.Items16"),
+            resources.GetString("languageComboBox.Items17"),
+            resources.GetString("languageComboBox.Items18"),
+            resources.GetString("languageComboBox.Items19"),
+            resources.GetString("languageComboBox.Items20"),
+            resources.GetString("languageComboBox.Items21"),
+            resources.GetString("languageComboBox.Items22"),
+            resources.GetString("languageComboBox.Items23"),
+            resources.GetString("languageComboBox.Items24"),
+            resources.GetString("languageComboBox.Items25"),
+            resources.GetString("languageComboBox.Items26"),
+            resources.GetString("languageComboBox.Items27"),
+            resources.GetString("languageComboBox.Items28"),
+            resources.GetString("languageComboBox.Items29"),
+            resources.GetString("languageComboBox.Items30"),
+            resources.GetString("languageComboBox.Items31"),
+            resources.GetString("languageComboBox.Items32"),
+            resources.GetString("languageComboBox.Items33"),
+            resources.GetString("languageComboBox.Items34"),
+            resources.GetString("languageComboBox.Items35"),
+            resources.GetString("languageComboBox.Items36"),
+            resources.GetString("languageComboBox.Items37"),
+            resources.GetString("languageComboBox.Items38"),
+            resources.GetString("languageComboBox.Items39"),
+            resources.GetString("languageComboBox.Items40"),
+            resources.GetString("languageComboBox.Items41"),
+            resources.GetString("languageComboBox.Items42"),
+            resources.GetString("languageComboBox.Items43"),
+            resources.GetString("languageComboBox.Items44"),
+            resources.GetString("languageComboBox.Items45"),
+            resources.GetString("languageComboBox.Items46"),
+            resources.GetString("languageComboBox.Items47"),
+            resources.GetString("languageComboBox.Items48"),
+            resources.GetString("languageComboBox.Items49"),
+            resources.GetString("languageComboBox.Items50"),
+            resources.GetString("languageComboBox.Items51"),
+            resources.GetString("languageComboBox.Items52"),
+            resources.GetString("languageComboBox.Items53"),
+            resources.GetString("languageComboBox.Items54"),
+            resources.GetString("languageComboBox.Items55"),
+            resources.GetString("languageComboBox.Items56"),
+            resources.GetString("languageComboBox.Items57"),
+            resources.GetString("languageComboBox.Items58"),
+            resources.GetString("languageComboBox.Items59"),
+            resources.GetString("languageComboBox.Items60"),
+            resources.GetString("languageComboBox.Items61"),
+            resources.GetString("languageComboBox.Items62"),
+            resources.GetString("languageComboBox.Items63"),
+            resources.GetString("languageComboBox.Items64"),
+            resources.GetString("languageComboBox.Items65"),
+            resources.GetString("languageComboBox.Items66"),
+            resources.GetString("languageComboBox.Items67"),
+            resources.GetString("languageComboBox.Items68"),
+            resources.GetString("languageComboBox.Items69"),
+            resources.GetString("languageComboBox.Items70"),
+            resources.GetString("languageComboBox.Items71"),
+            resources.GetString("languageComboBox.Items72"),
+            resources.GetString("languageComboBox.Items73"),
+            resources.GetString("languageComboBox.Items74"),
+            resources.GetString("languageComboBox.Items75"),
+            resources.GetString("languageComboBox.Items76"),
+            resources.GetString("languageComboBox.Items77"),
+            resources.GetString("languageComboBox.Items78"),
+            resources.GetString("languageComboBox.Items79"),
+            resources.GetString("languageComboBox.Items80"),
+            resources.GetString("languageComboBox.Items81"),
+            resources.GetString("languageComboBox.Items82"),
+            resources.GetString("languageComboBox.Items83"),
+            resources.GetString("languageComboBox.Items84"),
+            resources.GetString("languageComboBox.Items85"),
+            resources.GetString("languageComboBox.Items86"),
+            resources.GetString("languageComboBox.Items87"),
+            resources.GetString("languageComboBox.Items88"),
+            resources.GetString("languageComboBox.Items89"),
+            resources.GetString("languageComboBox.Items90"),
+            resources.GetString("languageComboBox.Items91"),
+            resources.GetString("languageComboBox.Items92"),
+            resources.GetString("languageComboBox.Items93"),
+            resources.GetString("languageComboBox.Items94"),
+            resources.GetString("languageComboBox.Items95"),
+            resources.GetString("languageComboBox.Items96"),
+            resources.GetString("languageComboBox.Items97"),
+            resources.GetString("languageComboBox.Items98"),
+            resources.GetString("languageComboBox.Items99"),
+            resources.GetString("languageComboBox.Items100"),
+            resources.GetString("languageComboBox.Items101"),
+            resources.GetString("languageComboBox.Items102"),
+            resources.GetString("languageComboBox.Items103"),
+            resources.GetString("languageComboBox.Items104"),
+            resources.GetString("languageComboBox.Items105"),
+            resources.GetString("languageComboBox.Items106"),
+            resources.GetString("languageComboBox.Items107"),
+            resources.GetString("languageComboBox.Items108"),
+            resources.GetString("languageComboBox.Items109")});
+            this.languageComboBox.Name = "languageComboBox";
+            // 
+            // httpsCheckBox
+            // 
+            resources.ApplyResources(this.httpsCheckBox, "httpsCheckBox");
+            this.httpsCheckBox.Name = "httpsCheckBox";
+            this.httpsCheckBox.UseVisualStyleBackColor = true;
             // 
             // OptionsForm
             // 
-            this.AcceptButton = this.button1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.acceptButton;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.button2;
-            this.ClientSize = new System.Drawing.Size(368, 132);
-            this.Controls.Add(this.channelTextBox);
+            this.CancelButton = this.cancelButton;
+            this.Controls.Add(this.httpsCheckBox);
+            this.Controls.Add(this.languageComboBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.acceptButton);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "OptionsForm";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Options";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,13 +229,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button acceptButton;
+        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox channelTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox languageComboBox;
+        private System.Windows.Forms.CheckBox httpsCheckBox;
     }
 }

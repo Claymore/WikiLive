@@ -117,7 +117,582 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="acceptButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="acceptButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 107</value>
+  </data>
+  <data name="acceptButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="acceptButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="acceptButton.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;acceptButton.Name" xml:space="preserve">
+    <value>acceptButton</value>
+  </data>
+  <data name="&gt;&gt;acceptButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;acceptButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;acceptButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>281, 107</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 15</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>IRC name:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="nameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="nameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 12</value>
+  </data>
+  <data name="nameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 20</value>
+  </data>
+  <data name="nameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Name" xml:space="preserve">
+    <value>nameTextBox</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nameTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="descriptionTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="descriptionTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 38</value>
+  </data>
+  <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 20</value>
+  </data>
+  <data name="descriptionTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;descriptionTextBox.Name" xml:space="preserve">
+    <value>descriptionTextBox</value>
+  </data>
+  <data name="&gt;&gt;descriptionTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;descriptionTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;descriptionTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 41</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 67</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="languageComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="languageComboBox.Items" xml:space="preserve">
+    <value>af</value>
+  </data>
+  <data name="languageComboBox.Items1" xml:space="preserve">
+    <value>als</value>
+  </data>
+  <data name="languageComboBox.Items2" xml:space="preserve">
+    <value>ar</value>
+  </data>
+  <data name="languageComboBox.Items3" xml:space="preserve">
+    <value>az</value>
+  </data>
+  <data name="languageComboBox.Items4" xml:space="preserve">
+    <value>bar</value>
+  </data>
+  <data name="languageComboBox.Items5" xml:space="preserve">
+    <value>bat-smg</value>
+  </data>
+  <data name="languageComboBox.Items6" xml:space="preserve">
+    <value>bcl</value>
+  </data>
+  <data name="languageComboBox.Items7" xml:space="preserve">
+    <value>be</value>
+  </data>
+  <data name="languageComboBox.Items8" xml:space="preserve">
+    <value>be-x-old</value>
+  </data>
+  <data name="languageComboBox.Items9" xml:space="preserve">
+    <value>bg</value>
+  </data>
+  <data name="languageComboBox.Items10" xml:space="preserve">
+    <value>bn</value>
+  </data>
+  <data name="languageComboBox.Items11" xml:space="preserve">
+    <value>bpy</value>
+  </data>
+  <data name="languageComboBox.Items12" xml:space="preserve">
+    <value>br</value>
+  </data>
+  <data name="languageComboBox.Items13" xml:space="preserve">
+    <value>ca</value>
+  </data>
+  <data name="languageComboBox.Items14" xml:space="preserve">
+    <value>ceb</value>
+  </data>
+  <data name="languageComboBox.Items15" xml:space="preserve">
+    <value>crh</value>
+  </data>
+  <data name="languageComboBox.Items16" xml:space="preserve">
+    <value>cs</value>
+  </data>
+  <data name="languageComboBox.Items17" xml:space="preserve">
+    <value>cv</value>
+  </data>
+  <data name="languageComboBox.Items18" xml:space="preserve">
+    <value>cy</value>
+  </data>
+  <data name="languageComboBox.Items19" xml:space="preserve">
+    <value>csb</value>
+  </data>
+  <data name="languageComboBox.Items20" xml:space="preserve">
+    <value>da</value>
+  </data>
+  <data name="languageComboBox.Items21" xml:space="preserve">
+    <value>de</value>
+  </data>
+  <data name="languageComboBox.Items22" xml:space="preserve">
+    <value>dv</value>
+  </data>
+  <data name="languageComboBox.Items23" xml:space="preserve">
+    <value>el</value>
+  </data>
+  <data name="languageComboBox.Items24" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="languageComboBox.Items25" xml:space="preserve">
+    <value>eo</value>
+  </data>
+  <data name="languageComboBox.Items26" xml:space="preserve">
+    <value>es</value>
+  </data>
+  <data name="languageComboBox.Items27" xml:space="preserve">
+    <value>et</value>
+  </data>
+  <data name="languageComboBox.Items28" xml:space="preserve">
+    <value>eu</value>
+  </data>
+  <data name="languageComboBox.Items29" xml:space="preserve">
+    <value>fa</value>
+  </data>
+  <data name="languageComboBox.Items30" xml:space="preserve">
+    <value>fi</value>
+  </data>
+  <data name="languageComboBox.Items31" xml:space="preserve">
+    <value>fiu-vro</value>
+  </data>
+  <data name="languageComboBox.Items32" xml:space="preserve">
+    <value>fo</value>
+  </data>
+  <data name="languageComboBox.Items33" xml:space="preserve">
+    <value>fr</value>
+  </data>
+  <data name="languageComboBox.Items34" xml:space="preserve">
+    <value>frp</value>
+  </data>
+  <data name="languageComboBox.Items35" xml:space="preserve">
+    <value>fur</value>
+  </data>
+  <data name="languageComboBox.Items36" xml:space="preserve">
+    <value>fy</value>
+  </data>
+  <data name="languageComboBox.Items37" xml:space="preserve">
+    <value>gl</value>
+  </data>
+  <data name="languageComboBox.Items38" xml:space="preserve">
+    <value>gn</value>
+  </data>
+  <data name="languageComboBox.Items39" xml:space="preserve">
+    <value>he</value>
+  </data>
+  <data name="languageComboBox.Items40" xml:space="preserve">
+    <value>hr</value>
+  </data>
+  <data name="languageComboBox.Items41" xml:space="preserve">
+    <value>hsb</value>
+  </data>
+  <data name="languageComboBox.Items42" xml:space="preserve">
+    <value>ht</value>
+  </data>
+  <data name="languageComboBox.Items43" xml:space="preserve">
+    <value>hu</value>
+  </data>
+  <data name="languageComboBox.Items44" xml:space="preserve">
+    <value>ia</value>
+  </data>
+  <data name="languageComboBox.Items45" xml:space="preserve">
+    <value>id</value>
+  </data>
+  <data name="languageComboBox.Items46" xml:space="preserve">
+    <value>ie</value>
+  </data>
+  <data name="languageComboBox.Items47" xml:space="preserve">
+    <value>io</value>
+  </data>
+  <data name="languageComboBox.Items48" xml:space="preserve">
+    <value>is</value>
+  </data>
+  <data name="languageComboBox.Items49" xml:space="preserve">
+    <value>it</value>
+  </data>
+  <data name="languageComboBox.Items50" xml:space="preserve">
+    <value>ja</value>
+  </data>
+  <data name="languageComboBox.Items51" xml:space="preserve">
+    <value>ka</value>
+  </data>
+  <data name="languageComboBox.Items52" xml:space="preserve">
+    <value>ko</value>
+  </data>
+  <data name="languageComboBox.Items53" xml:space="preserve">
+    <value>kk</value>
+  </data>
+  <data name="languageComboBox.Items54" xml:space="preserve">
+    <value>ksh</value>
+  </data>
+  <data name="languageComboBox.Items55" xml:space="preserve">
+    <value>ku</value>
+  </data>
+  <data name="languageComboBox.Items56" xml:space="preserve">
+    <value>la</value>
+  </data>
+  <data name="languageComboBox.Items57" xml:space="preserve">
+    <value>lb</value>
+  </data>
+  <data name="languageComboBox.Items58" xml:space="preserve">
+    <value>lmo</value>
+  </data>
+  <data name="languageComboBox.Items59" xml:space="preserve">
+    <value>ln</value>
+  </data>
+  <data name="languageComboBox.Items60" xml:space="preserve">
+    <value>lt</value>
+  </data>
+  <data name="languageComboBox.Items61" xml:space="preserve">
+    <value>mi</value>
+  </data>
+  <data name="languageComboBox.Items62" xml:space="preserve">
+    <value>lv</value>
+  </data>
+  <data name="languageComboBox.Items63" xml:space="preserve">
+    <value>mk</value>
+  </data>
+  <data name="languageComboBox.Items64" xml:space="preserve">
+    <value>ml</value>
+  </data>
+  <data name="languageComboBox.Items65" xml:space="preserve">
+    <value>mn</value>
+  </data>
+  <data name="languageComboBox.Items66" xml:space="preserve">
+    <value>mr</value>
+  </data>
+  <data name="languageComboBox.Items67" xml:space="preserve">
+    <value>ms</value>
+  </data>
+  <data name="languageComboBox.Items68" xml:space="preserve">
+    <value>mzn</value>
+  </data>
+  <data name="languageComboBox.Items69" xml:space="preserve">
+    <value>nah</value>
+  </data>
+  <data name="languageComboBox.Items70" xml:space="preserve">
+    <value>nds</value>
+  </data>
+  <data name="languageComboBox.Items71" xml:space="preserve">
+    <value>nds-nl</value>
+  </data>
+  <data name="languageComboBox.Items72" xml:space="preserve">
+    <value>nl</value>
+  </data>
+  <data name="languageComboBox.Items73" xml:space="preserve">
+    <value>nn</value>
+  </data>
+  <data name="languageComboBox.Items74" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="languageComboBox.Items75" xml:space="preserve">
+    <value>nov</value>
+  </data>
+  <data name="languageComboBox.Items76" xml:space="preserve">
+    <value>nrm</value>
+  </data>
+  <data name="languageComboBox.Items77" xml:space="preserve">
+    <value>os</value>
+  </data>
+  <data name="languageComboBox.Items78" xml:space="preserve">
+    <value>pl</value>
+  </data>
+  <data name="languageComboBox.Items79" xml:space="preserve">
+    <value>pms</value>
+  </data>
+  <data name="languageComboBox.Items80" xml:space="preserve">
+    <value>pt</value>
+  </data>
+  <data name="languageComboBox.Items81" xml:space="preserve">
+    <value>qu</value>
+  </data>
+  <data name="languageComboBox.Items82" xml:space="preserve">
+    <value>ro</value>
+  </data>
+  <data name="languageComboBox.Items83" xml:space="preserve">
+    <value>ru</value>
+  </data>
+  <data name="languageComboBox.Items84" xml:space="preserve">
+    <value>sk</value>
+  </data>
+  <data name="languageComboBox.Items85" xml:space="preserve">
+    <value>sl</value>
+  </data>
+  <data name="languageComboBox.Items86" xml:space="preserve">
+    <value>sq</value>
+  </data>
+  <data name="languageComboBox.Items87" xml:space="preserve">
+    <value>sr</value>
+  </data>
+  <data name="languageComboBox.Items88" xml:space="preserve">
+    <value>su</value>
+  </data>
+  <data name="languageComboBox.Items89" xml:space="preserve">
+    <value>sv</value>
+  </data>
+  <data name="languageComboBox.Items90" xml:space="preserve">
+    <value>sw</value>
+  </data>
+  <data name="languageComboBox.Items91" xml:space="preserve">
+    <value>szl</value>
+  </data>
+  <data name="languageComboBox.Items92" xml:space="preserve">
+    <value>ta</value>
+  </data>
+  <data name="languageComboBox.Items93" xml:space="preserve">
+    <value>te</value>
+  </data>
+  <data name="languageComboBox.Items94" xml:space="preserve">
+    <value>tet</value>
+  </data>
+  <data name="languageComboBox.Items95" xml:space="preserve">
+    <value>tg</value>
+  </data>
+  <data name="languageComboBox.Items96" xml:space="preserve">
+    <value>tl</value>
+  </data>
+  <data name="languageComboBox.Items97" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="languageComboBox.Items98" xml:space="preserve">
+    <value>tr</value>
+  </data>
+  <data name="languageComboBox.Items99" xml:space="preserve">
+    <value>th</value>
+  </data>
+  <data name="languageComboBox.Items100" xml:space="preserve">
+    <value>uk</value>
+  </data>
+  <data name="languageComboBox.Items101" xml:space="preserve">
+    <value>uz</value>
+  </data>
+  <data name="languageComboBox.Items102" xml:space="preserve">
+    <value>vi</value>
+  </data>
+  <data name="languageComboBox.Items103" xml:space="preserve">
+    <value>vo</value>
+  </data>
+  <data name="languageComboBox.Items104" xml:space="preserve">
+    <value>war</value>
+  </data>
+  <data name="languageComboBox.Items105" xml:space="preserve">
+    <value>yi</value>
+  </data>
+  <data name="languageComboBox.Items106" xml:space="preserve">
+    <value>yue</value>
+  </data>
+  <data name="languageComboBox.Items107" xml:space="preserve">
+    <value>zh</value>
+  </data>
+  <data name="languageComboBox.Items108" xml:space="preserve">
+    <value>zh-classical</value>
+  </data>
+  <data name="languageComboBox.Items109" xml:space="preserve">
+    <value>zh-yue</value>
+  </data>
+  <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 64</value>
+  </data>
+  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 21</value>
+  </data>
+  <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
+    <value>languageComboBox</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="httpsCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="httpsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 91</value>
+  </data>
+  <data name="httpsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="httpsCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="httpsCheckBox.Text" xml:space="preserve">
+    <value>Use HTTPS links.</value>
+  </data>
+  <data name="&gt;&gt;httpsCheckBox.Name" xml:space="preserve">
+    <value>httpsCheckBox</value>
+  </data>
+  <data name="&gt;&gt;httpsCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;httpsCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;httpsCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>368, 142</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAAAAABoBAAAJgAAACAgAAAAAAAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAE
@@ -212,5 +787,20 @@
         fA+GAHwDAAA8AQAAAAAAAAAAAAAAAYAAAAH8AAAD/AAAw/wAAP/4AAH/8AAAD/AAAA//wAAP/+AAH//g
         MD//wH5//+B/////////////////////////////
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>384, 180</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>OptionsForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
